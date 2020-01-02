@@ -28,7 +28,7 @@ export const Item = styled.div`
     text-align: center;
     width: 74px;
     word-break: break-all;
-    height: 1.6rem;
+    height: 1.8rem;
   }
 
   :hover {
