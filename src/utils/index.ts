@@ -19,3 +19,12 @@ export const getPath = (name: string) => {
       return '';
   }
 };
+
+export const splitPath = (currentPath: string) => {
+  let pathsArray = currentPath.split(path.sep);
+
+  if (pathsArray[0] === '') {
+    pathsArray[0] = '/';
+  }
+  return pathsArray;
+};
