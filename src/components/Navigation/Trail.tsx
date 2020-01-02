@@ -6,10 +6,19 @@ import { Trail as StyledTrail } from './styles';
 interface Props {
   name: string;
   active: boolean;
+  index: number;
+  handleNavigate: Function;
 }
 
-const Trail: React.FC<Props> = ({ name, active }) => {
-  return <StyledTrail active={active}>{name}</StyledTrail>;
+const Trail: React.FC<Props> = ({ name, index, active, handleNavigate }) => {
+  return (
+    <StyledTrail
+      active={active}
+      onClick={() => !active && handleNavigate(index)}
+    >
+      {name}
+    </StyledTrail>
+  );
 };
 
 export default connect(null)(Trail);

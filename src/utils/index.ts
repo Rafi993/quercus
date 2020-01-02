@@ -26,5 +26,9 @@ export const splitPath = (currentPath: string) => {
   if (pathsArray[0] === '') {
     pathsArray[0] = '/';
   }
-  return pathsArray;
+
+  return pathsArray.filter(trail => trail !== '');
 };
+
+export const joinPath = (breadCrumbs: Array<string>) =>
+  path.join.apply(null, breadCrumbs);

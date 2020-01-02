@@ -4,8 +4,12 @@ import * as colors from '../../styles/colors';
 
 export const Navigation = styled.div`
   display: flex;
-  margin-top: 8px;
+  height: 4em;
   margin-left: 8px;
+  > div {
+    position: fixed;
+    top: 12px;
+  }
 `;
 
 interface TrailProps {
