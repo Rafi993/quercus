@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import * as colors from '../../../styles/colors';
+
 interface MenuItemProps {
   active: boolean;
 }
@@ -9,11 +11,11 @@ export const MenuItem = styled.h3<MenuItemProps>`
   font-weight: normal;
   margin: 0;
   padding: 0.5em 1em;
-  color: ${props => (props.active ? '#d605e4' : '#fff')};
+  color: ${props => (props.active ? colors.ACTIVE : colors.PRIMARY_TEXT)};
   :hover {
-    background-color: #d605e4;
+    background-color: ${colors.ACTIVE};
     user-select: none;
-    color: ${props => (props.active ? '#000' : '#fff')};
+    color: ${props => (props.active ? colors.PRIMARY : colors.PRIMARY_TEXT)};
   }
 
   > svg {

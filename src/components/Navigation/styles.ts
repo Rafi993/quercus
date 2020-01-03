@@ -17,7 +17,8 @@ interface TrailProps {
 }
 
 export const Trail = styled.div<TrailProps>`
-  background-color: ${props => (props.active ? colors.ACTIVE : '#282828')};
+  background-color: ${props =>
+    props.active ? colors.ACTIVE : colors.SECONDARY};
   cursor: ${props => (props.active ? 'default' : 'pointer')};
   display: inline-block;
   padding: 0.4em 1em;
