@@ -13,6 +13,7 @@ interface Props {
 const Trail: React.FC<Props> = ({ name, index, active, handleNavigate }) => {
   return (
     <StyledTrail
+      data-testid="trail"
       active={active}
       onClick={() => !active && handleNavigate(index)}
     >

@@ -3,10 +3,13 @@
 exports[`Testing if it contains sidebar component is rendered 1`] = `
 <DocumentFragment>
   <div
-    class="sc-bdVaJa gPPEKz"
+    class="sc-bdVaJa cRUvUp"
   >
     <div />
-    <div />
+    <div>
+      <div />
+      <div />
+    </div>
   </div>
 </DocumentFragment>
 `;

@@ -16,6 +16,11 @@ jest.mock('../GridView', () => {
   return MockGridView;
 });
 
+jest.mock('../Navigation', () => {
+  const MockNavigation = () => <div />;
+  return MockNavigation;
+});
+
 it('Testing if it contains sidebar component is rendered', () => {
   const { asFragment } = render(<App />);
   expect(asFragment()).toMatchSnapshot();
