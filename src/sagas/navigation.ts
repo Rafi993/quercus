@@ -1,8 +1,11 @@
-import { put, takeLatest, call } from 'redux-saga/effects';
+import { put, takeLatest, call, select } from 'redux-saga/effects';
 
 import * as atypes from '../constants/actionTypes';
 import * as navigationApi from '../api/navigation';
-import { SetCurrentPathAction } from '../types/actions';
+import { SetCurrentPathAction, OpenFileAction } from '../types/actions';
+
+const path = window.require('path');
+const { shell } = window.require('electron');
 
 export function* navigate({ payload }: SetCurrentPathAction): any {
   try {
@@ -26,4 +29,30 @@ export function* watchNavigate(): any {
   yield takeLatest(atypes.SET_CURRENT_PATH, navigate);
 }
 
-export default [watchNavigate()];
+export function* openFile({ payload }: OpenFileAction): any {
+  try {
+    const currentPath = yield select(app => app.currentPath);
+    const fullPath = path.join(currentPath, payload.fileName);
+    const opened = shell.openItem(fullPath);
+
+    if (opened) {
+      yield put({
+        type: atypes.OPEN_FILE_SUCCESS,
+        payload: {
+          fileName: fullPath,
+        },
+      });
+    }
+  } catch (error) {
+    yield put({
+      type: atypes.OPEN_FILE_FAILURE,
+      payload: { error },
+    });
+  }
+}
+
+export function* watchOpenFile(): any {
+  yield takeLatest(atypes.OPEN_FILE_REQUEST, openFile);
+}
+
+export default [watchNavigate(), watchOpenFile()];

@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import React, { useCallback } from 'react';
 
 import { App } from '../../types/state';
-import { setCurrentPath } from '../../actions/sideBar';
+import { setCurrentPath } from '../../actions/navigation';
 import Icon from '../Icon';
 import { Folder as StyledFolder } from './styles';
 

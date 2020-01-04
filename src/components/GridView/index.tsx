@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import React, { useEffect } from 'react';
 
 import { App, FolderContent } from '../../types/state';
-import { setCurrentPath } from '../../actions/sideBar';
+import { setCurrentPath } from '../../actions/navigation';
 import { getPath } from '../../utils';
 import { GridView as StyledGridView } from './styles';
 import Item from './Item';

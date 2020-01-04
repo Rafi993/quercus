@@ -1,8 +1,8 @@
 import { expectSaga } from 'redux-saga-test-plan';
 
 import * as atypes from '../../constants/actionTypes';
-import { navigate } from '../navigation';
-import { SetCurrentPathAction } from '../../types/actions';
+import { navigate, openFile } from '../navigation';
+import { SetCurrentPathAction, OpenFileAction } from '../../types/actions';
 const { listFilesResponse } = require('../../__mock__/api');
 
 jest.mock('../../api/navigation', () => {
@@ -23,6 +23,27 @@ describe('navigation saga', () => {
         type: atypes.GET_FOLDER_CONTENTS_SUCCESS,
         payload: {
           children: listFilesResponse,
+        },
+      })
+      .run();
+  });
+});
+
+describe('file open saga', () => {
+  it('open file in default application', () => {
+    const fileName = 'hello world';
+    const initialAction: OpenFileAction = {
+      type: atypes.OPEN_FILE_REQUEST,
+      payload: {
+        fileName,
+      },
+    };
+
+    expectSaga(openFile, initialAction)
+      .put({
+        type: atypes.OPEN_FILE_SUCCESS,
+        payload: {
+          fileName,
         },
       })
       .run();

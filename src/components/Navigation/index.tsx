@@ -2,7 +2,7 @@ import React, { useMemo, useCallback } from 'react';
 import { connect } from 'react-redux';
 import { App } from '../../types/state';
 import { splitPath, joinPath } from '../../utils';
-import { setCurrentPath } from '../../actions/sideBar';
+import { setCurrentPath } from '../../actions/navigation';
 import Trail from './Trail';
 import { Navigation as StyledNavigation } from './styles';
 

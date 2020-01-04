@@ -16,3 +16,10 @@ export interface GetFolderContentAction {
     children: Array<Child>;
   };
 }
+
+export interface OpenFileAction {
+  type: typeof atypes.OPEN_FILE_REQUEST;
+  payload: {
+    fileName: string;
+  };
+}
