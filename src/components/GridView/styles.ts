@@ -1,10 +1,16 @@
 import styled from 'styled-components';
 
+import * as colors from '../../styles/colors';
+
 export const GridView = styled.div`
   padding: 1.5em 2em;
 `;
 
-export const Item = styled.div`
+interface ItemProps {
+  selected: boolean;
+}
+
+export const Item = styled.div<ItemProps>`
   float: left;
   display: grid;
   justify-content: center;
@@ -16,6 +22,9 @@ export const Item = styled.div`
     width: 40px;
     margin: 10px auto;
     margin-bottom: 0;
+    > path {
+      fill: ${props => (props.selected ? colors.ACTIVE : colors.GREY0)};
+    }
   }
 
   > h4 {
@@ -29,11 +38,12 @@ export const Item = styled.div`
     width: 74px;
     word-break: break-all;
     height: 1.8rem;
+    color: ${props => (props.selected ? colors.ACTIVE : colors.PRIMARY_TEXT)};
   }
 
   :hover {
     > svg > path {
-      fill: #fff;
+      fill: ${props => (props.selected ? colors.ACTIVE : colors.PRIMARY_TEXT)};
     }
   }
 `;
@@ -41,7 +51,7 @@ export const Item = styled.div`
 export const Folder = styled(Item)`
   :hover {
     > svg > path {
-      fill: #616161;
+      fill: ${props => (props.selected ? colors.ACTIVE : colors.GREY1)};
     }
   }
 `;

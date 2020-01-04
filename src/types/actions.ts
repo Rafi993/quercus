@@ -27,3 +27,14 @@ export interface OpenFileAction {
 export interface ToggleHiddenContent {
   type: typeof atypes.TOGGLE_HIDDEN_CONTENT;
 }
+
+export interface ToggleSelection {
+  type:
+    | typeof atypes.TOGGLE_SINGLE_CHILD_SELECTION
+    | typeof atypes.SET_CURRENT_PATH
+    | typeof atypes.OPEN_FILE_REQUEST
+    | typeof atypes.TOGGLE_HIDDEN_CONTENT;
+  payload: {
+    child?: string;
+  };
+}
