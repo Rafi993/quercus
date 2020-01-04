@@ -20,7 +20,7 @@ const Folder: React.FC<Props> = ({ currentPath, name, _setCurrentPath }) => {
   }, [currentPath, name, _setCurrentPath]);
 
   return (
-    <StyledFolder title={name} onClick={navigateInto}>
+    <StyledFolder title={name} onDoubleClick={navigateInto}>
       <Icon type="folder" />
       <h4>{name}</h4>
     </StyledFolder>

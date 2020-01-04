@@ -17,7 +17,7 @@ const File: React.FC<Props> = ({ name, _openFile }) => {
   }, [name]);
 
   return (
-    <StyledItem title={name} onClick={() => _openFile(name)}>
+    <StyledItem title={name} onDoubleClick={() => _openFile(name)}>
       <FileIcon type={fileType} />
       <h4>{name}</h4>
     </StyledItem>
