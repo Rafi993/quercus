@@ -23,3 +23,7 @@ export interface OpenFileAction {
     fileName: string;
   };
 }
+
+export interface ToggleHiddenContent {
+  type: typeof atypes.TOGGLE_HIDDEN_CONTENT;
+}

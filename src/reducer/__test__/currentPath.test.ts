@@ -1,4 +1,4 @@
-import currentPath from './index';
+import currentPath from '../currentPath';
 import * as atypes from '../../constants/actionTypes';
 import { SetCurrentPathAction } from '../../types/actions';
 

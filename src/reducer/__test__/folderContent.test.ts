@@ -1,4 +1,4 @@
-import folderContent from './index';
+import folderContent from '../folderContent';
 import { FolderContent } from '../../types/state';
 import * as atypes from '../../constants/actionTypes';
 
