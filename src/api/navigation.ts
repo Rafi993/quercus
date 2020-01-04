@@ -1,3 +1,6 @@
+import { sortFolderContent } from '../utils';
+import { FolderContent } from '../types/state';
+
 const fs = window.require('fs-extra');
 
 /**
@@ -8,12 +11,16 @@ const fs = window.require('fs-extra');
 export const listFiles = async (path: string) => {
   const children = await fs.readdir(path, { withFileTypes: true });
 
-  return [
-    ...children.map((child: { isFile: Function; name: string }) => {
-      if (child.isFile()) {
-        return { name: child.name, type: 'file' };
-      }
-      return { name: child.name, type: 'folder' };
-    }),
-  ];
+  let file: FolderContent = [];
+  let folder: FolderContent = [];
+
+  for (const child of children) {
+    if (child.isFile()) {
+      file.push({ name: child.name, type: 'file' });
+    } else {
+      folder.push({ name: child.name, type: 'folder' });
+    }
+  }
+
+  return [...folder.sort(sortFolderContent), ...file.sort(sortFolderContent)];
 };

@@ -1,3 +1,5 @@
+import { Child } from '../types/state';
+
 const os = window.require('os');
 const path = window.require('path');
 const { shell } = window.require('electron');
@@ -38,3 +40,16 @@ export const appendPath = (currentPath: string, item: string) =>
   path.join(currentPath, item);
 
 export const openFileDefault = (fullPath: string) => shell.openItem(fullPath);
+
+export const sortFolderContent = (a: Child, b: Child): number => {
+  const child1 = a.name.toLowerCase();
+  const child2 = b.name.toLowerCase();
+
+  if (child1 < child2) {
+    return -1;
+  }
+  if (child2 > child1) {
+    return 1;
+  }
+  return 0;
+};
