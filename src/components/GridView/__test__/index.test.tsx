@@ -27,7 +27,10 @@ jest.mock('../Item', () => {
 
 it('Renders folder contents in grid', () => {
   const state = {
-    folderContent: listFilesResponse,
+    folderContent: {
+      children: listFilesResponse,
+      showHiddenContent: false,
+    },
   };
 
   const store = mockStore(state);

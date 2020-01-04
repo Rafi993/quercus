@@ -3,10 +3,14 @@ export interface Child {
   type: 'file' | 'folder';
 }
 
-export type FolderContent = Array<Child>;
+export type Children = Array<Child>;
+
+export type FolderContent = {
+  children: Children;
+  showHiddenContent: boolean;
+};
 
 export interface App {
   currentPath: string;
   folderContent: FolderContent;
-  showHiddenContent: boolean;
 }

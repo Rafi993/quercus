@@ -1,5 +1,5 @@
 import * as atypes from '../constants/actionTypes';
-import { Child } from './state';
+import { Children } from './state';
 
 export interface SetCurrentPathAction {
   type: typeof atypes.SET_CURRENT_PATH;
@@ -13,7 +13,7 @@ export interface GetFolderContentAction {
     | typeof atypes.SET_CURRENT_PATH
     | typeof atypes.GET_FOLDER_CONTENTS_SUCCESS;
   payload: {
-    children: Array<Child>;
+    children: Children;
   };
 }
 

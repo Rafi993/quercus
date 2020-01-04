@@ -1,5 +1,5 @@
 import { sortFolderContent } from '../utils';
-import { FolderContent } from '../types/state';
+import { Children } from '../types/state';
 
 const fs = window.require('fs-extra');
 
@@ -11,8 +11,8 @@ const fs = window.require('fs-extra');
 export const listFiles = async (path: string) => {
   const children = await fs.readdir(path, { withFileTypes: true });
 
-  let file: FolderContent = [];
-  let folder: FolderContent = [];
+  let file: Children = [];
+  let folder: Children = [];
 
   for (const child of children) {
     if (child.isFile()) {

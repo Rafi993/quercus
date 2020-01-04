@@ -7,11 +7,11 @@ import { SetCurrentPathAction, OpenFileAction } from '../types/actions';
 
 export function* navigate({ payload }: SetCurrentPathAction): any {
   try {
-    const folderContent = yield call(navigationApi.listFiles, payload.path);
+    const children = yield call(navigationApi.listFiles, payload.path);
 
     yield put({
       type: atypes.GET_FOLDER_CONTENTS_SUCCESS,
-      payload: { children: folderContent },
+      payload: { children },
     });
   } catch (error) {
     yield put({
