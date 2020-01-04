@@ -2,10 +2,8 @@ import { put, takeLatest, call, select } from 'redux-saga/effects';
 
 import * as atypes from '../constants/actionTypes';
 import * as navigationApi from '../api/navigation';
+import { appendPath, openFileDefault } from '../utils';
 import { SetCurrentPathAction, OpenFileAction } from '../types/actions';
-
-const path = window.require('path');
-const { shell } = window.require('electron');
 
 export function* navigate({ payload }: SetCurrentPathAction): any {
   try {
@@ -32,8 +30,8 @@ export function* watchNavigate(): any {
 export function* openFile({ payload }: OpenFileAction): any {
   try {
     const currentPath = yield select(app => app.currentPath);
-    const fullPath = path.join(currentPath, payload.fileName);
-    const opened = shell.openItem(fullPath);
+    const fullPath = appendPath(currentPath, payload.fileName);
+    const opened = openFileDefault(fullPath);
 
     if (opened) {
       yield put({

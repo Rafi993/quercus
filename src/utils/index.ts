@@ -1,5 +1,6 @@
 const os = window.require('os');
 const path = window.require('path');
+const { shell } = window.require('electron');
 
 export const getPath = (name: string) => {
   switch (name) {
@@ -32,3 +33,8 @@ export const splitPath = (currentPath: string) => {
 
 export const joinPath = (breadCrumbs: Array<string>) =>
   path.join.apply(null, breadCrumbs);
+
+export const appendPath = (currentPath: string, item: string) =>
+  path.join(currentPath, item);
+
+export const openFileDefault = (fullPath: string) => shell.openItem(fullPath);
