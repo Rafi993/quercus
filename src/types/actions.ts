@@ -38,3 +38,7 @@ export interface ToggleSelection {
     child?: string;
   };
 }
+
+export interface NavigateBack {
+  type: typeof atypes.NAVIGATE_BACK;
+}

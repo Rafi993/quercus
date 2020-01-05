@@ -3,7 +3,7 @@ import React, { useEffect, useCallback } from 'react';
 
 import { getFolderContent } from '../../reducer';
 import { App, Children } from '../../types/state';
-import { setCurrentPath } from '../../actions/navigation';
+import { setCurrentPath, navigateBack } from '../../actions/navigation';
 import { toggleHiddenContent } from '../../actions/folders';
 import { getPath } from '../../utils';
 import { GridView as StyledGridView } from './styles';
@@ -12,16 +12,28 @@ interface Props {
   folderContent: Children;
   _setCurrentPath: Function;
   _toggleHiddenContent: Function;
+  _navigateBack: Function;
 }
 
 const GridView: React.FC<Props> = ({
   folderContent,
   _setCurrentPath,
   _toggleHiddenContent,
+  _navigateBack,
 }) => {
   const handleKeyDown = useCallback(
     (event: any) => {
-      if (event.code === 'KeyH') _toggleHiddenContent();
+      console.log(event.code);
+      switch (event.code) {
+        case 'KeyH':
+          _toggleHiddenContent();
+          break;
+        case 'Backspace':
+          _navigateBack();
+          break;
+        default:
+          break;
+      }
     },
     [_toggleHiddenContent]
   );
@@ -53,4 +65,5 @@ const mapStateToProps = (app: App) => ({
 export default connect(mapStateToProps, {
   _setCurrentPath: setCurrentPath,
   _toggleHiddenContent: toggleHiddenContent,
+  _navigateBack: navigateBack,
 })(GridView);

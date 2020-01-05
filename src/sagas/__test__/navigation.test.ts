@@ -62,3 +62,5 @@ describe('file open saga', () => {
       .run();
   });
 });
+
+it.todo('testing backspace key board navigation');

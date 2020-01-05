@@ -2,7 +2,7 @@ import { put, takeLatest, call, select } from 'redux-saga/effects';
 
 import * as atypes from '../constants/actionTypes';
 import * as navigationApi from '../api/navigation';
-import { appendPath, openFileDefault } from '../utils';
+import { appendPath, openFileDefault, splitPath, joinPath } from '../utils';
 import { SetCurrentPathAction, OpenFileAction } from '../types/actions';
 
 export function* navigate({ payload }: SetCurrentPathAction): any {
@@ -53,4 +53,25 @@ export function* watchOpenFile(): any {
   yield takeLatest(atypes.OPEN_FILE_REQUEST, openFile);
 }
 
-export default [watchNavigate(), watchOpenFile()];
+export function* navigateBack(): any {
+  try {
+    const currentPath = yield select(app => app.currentPath);
+    const breadCrumb = splitPath(currentPath || '');
+    const newPath = joinPath(breadCrumb.slice(0, breadCrumb.length - 1));
+
+    if (newPath !== '.') {
+      yield put({
+        type: atypes.SET_CURRENT_PATH,
+        payload: { path: newPath },
+      });
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+function* watchNavitateBack(): any {
+  yield takeLatest(atypes.NAVIGATE_BACK, navigateBack);
+}
+
+export default [watchNavigate(), watchOpenFile(), watchNavitateBack()];
