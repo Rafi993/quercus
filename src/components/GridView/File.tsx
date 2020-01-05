@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import React, { useMemo } from 'react';
+import React, { useMemo, useRef, useEffect, useCallback } from 'react';
 
 import { openFile } from '../../actions/navigation';
 import { toggleSelection } from '../../actions/folders';
@@ -21,17 +21,37 @@ const File: React.FC<Props> = ({
   _openFile,
   _toggleSelection,
 }) => {
+  const fileRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (selected && fileRef && fileRef.current) {
+      fileRef.current.focus();
+    }
+  }, [fileRef, selected]);
+
   const fileType: string = useMemo(() => {
     const extension = (name || '').split('.').pop();
     return extension ? extension : 'file';
   }, [name]);
 
+  const handleEnter = useCallback(
+    (event: any) => {
+      if (event.key === 'Enter') {
+        _openFile(name);
+      }
+    },
+    [name, _openFile]
+  );
+
   return (
     <StyledItem
       title={name}
+      ref={fileRef}
+      tabIndex={-1}
       selected={selected}
       onClick={() => _toggleSelection(name)}
       onDoubleClick={() => _openFile(name)}
+      onKeyPress={handleEnter}
     >
       <FileIcon type={fileType} />
       <h4>{name}</h4>

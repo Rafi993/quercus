@@ -35,7 +35,7 @@ const GridView: React.FC<Props> = ({
           break;
       }
     },
-    [_toggleHiddenContent]
+    [_toggleHiddenContent, _navigateBack]
   );
 
   useEffect(() => {

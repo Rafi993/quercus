@@ -17,6 +17,7 @@ export const Item = styled.div<ItemProps>`
   align-items: center;
   height: 90px;
   width: 90px;
+  outline: none;
   > svg {
     height: 40px;
     width: 40px;

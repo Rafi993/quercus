@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import React, { useCallback } from 'react';
+import React, { useCallback, useRef, useEffect } from 'react';
 
 import { App } from '../../types/state';
 import { setCurrentPath } from '../../actions/navigation';
@@ -25,14 +25,33 @@ const Folder: React.FC<Props> = ({
   _setCurrentPath,
   _toggleSelection,
 }) => {
+  const folderRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (selected && folderRef && folderRef.current) {
+      folderRef.current.focus();
+    }
+  }, [folderRef, selected]);
+
   const navigateInto = useCallback(() => {
     _setCurrentPath(path.join(currentPath, name));
   }, [currentPath, name, _setCurrentPath]);
 
+  const handleEnter = useCallback(
+    (event: any) => {
+      if (event.key === 'Enter') {
+        navigateInto();
+      }
+    },
+    [navigateInto]
+  );
+
   return (
     <StyledFolder
       title={name}
+      tabIndex={-1}
       onClick={() => _toggleSelection(name)}
+      onKeyPress={handleEnter}
       onDoubleClick={navigateInto}
       selected={selected}
     >
