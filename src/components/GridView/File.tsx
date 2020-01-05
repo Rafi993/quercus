@@ -47,7 +47,8 @@ const File: React.FC<Props> = ({
     <StyledItem
       title={name}
       ref={fileRef}
-      tabIndex={-1}
+      tabIndex={0}
+      role="button"
       selected={selected}
       onClick={() => _toggleSelection(name)}
       onDoubleClick={() => _openFile(name)}

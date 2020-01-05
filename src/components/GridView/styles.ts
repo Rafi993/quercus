@@ -47,6 +47,16 @@ export const Item = styled.div<ItemProps>`
       fill: ${props => (props.selected ? colors.ACTIVE : colors.PRIMARY_TEXT)};
     }
   }
+
+  :focus {
+    > svg > path {
+      fill: ${colors.ACTIVE};
+    }
+
+    > h4 {
+      color: ${props => colors.ACTIVE};
+    }
+  }
 `;
 
 export const Folder = styled(Item)`

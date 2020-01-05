@@ -18,6 +18,7 @@ interface TrailProps {
 }
 
 export const Trail = styled.div<TrailProps>`
+  outline: none;
   background-color: ${props =>
     props.active ? colors.ACTIVE : colors.SECONDARY};
   cursor: ${props => (props.active ? 'default' : 'pointer')};
@@ -25,4 +26,8 @@ export const Trail = styled.div<TrailProps>`
   padding: 0.4em 1em;
   border-radius: 3px;
   margin-left: 4px;
+  :focus {
+    background-color: ${props =>
+      props.active ? colors.ACTIVE_FOCUSED : colors.GREY1};
+  }
 `;

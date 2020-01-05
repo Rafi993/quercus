@@ -28,9 +28,21 @@ const MenuItem: React.FC<Props> = ({
     }
   }, [path, currentPath, _setCurrentPath]);
 
+  const handleEnter = useCallback(
+    (event: any) => {
+      if (event.key === 'Enter') {
+        handleNavigate();
+      }
+    },
+    [handleNavigate]
+  );
+
   return (
     <StyledMenuItem
+      tabIndex={0}
+      role="button"
       onClick={handleNavigate}
+      onKeyPress={handleEnter}
       key={name}
       active={path === currentPath}
     >

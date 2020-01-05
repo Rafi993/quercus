@@ -49,7 +49,8 @@ const Folder: React.FC<Props> = ({
   return (
     <StyledFolder
       title={name}
-      tabIndex={-1}
+      tabIndex={0}
+      role="button"
       onClick={() => _toggleSelection(name)}
       onKeyPress={handleEnter}
       onDoubleClick={navigateInto}
