@@ -4,12 +4,24 @@ const os = window.require('os');
 const path = window.require('path');
 const { shell } = window.require('electron');
 
+// Point trash do different path based on os
+const getTrashDir = () => {
+  switch (os.platform()) {
+    case 'darwin':
+      return '~/.Trash';
+    case 'win32':
+      return 'C:\\$Recycle.Bin';
+    default:
+      return path.join(os.homedir(), '/.local/share/Trash/files');
+  }
+};
+
 export const getPath = (name: string) => {
   switch (name) {
     case 'home':
       return os.homedir();
     case 'trash':
-      return 'trash:///';
+      return getTrashDir();
     case 'recent':
       return 'recent:///';
     case 'desktop':
@@ -53,3 +65,5 @@ export const sortFolderContent = (a: Child, b: Child): number => {
   }
   return 0;
 };
+
+export const isWindows = os.platform() === 'win32';

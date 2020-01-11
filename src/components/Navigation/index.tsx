@@ -12,7 +12,17 @@ interface Props {
 }
 
 const Navigation: React.FC<Props> = ({ currentPath, _setCurrentPath }) => {
-  const breadCrumb = useMemo(() => splitPath(currentPath || ''), [currentPath]);
+  const breadCrumb = useMemo(() => {
+    if (
+      currentPath === '~/.Trash' ||
+      currentPath === 'win32' ||
+      currentPath.includes('/.local/share/Trash/files')
+    ) {
+      return ['trash'];
+    }
+
+    return splitPath(currentPath || '');
+  }, [currentPath]);
 
   const handleNavigate = useCallback(
     (index: number) => {

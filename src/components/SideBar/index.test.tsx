@@ -6,6 +6,12 @@ import SideBar from './index';
 
 afterEach(cleanup);
 
+jest.mock('../../utils', () => {
+  return {
+    getTrashDir: () => 'trash',
+  };
+});
+
 jest.mock('./MenuItem', () => {
   const MockMenuItem = ({ name, text }: { name: string; text: string }) => (
     <div data-name={name}>{text}</div>

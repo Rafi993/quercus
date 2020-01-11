@@ -1,3 +1,5 @@
+import { isWindows } from '../utils';
+
 export const defaultSideBarOptions = [
   {
     name: 'recent',
@@ -21,6 +23,6 @@ export const defaultSideBarOptions = [
   },
   {
     name: 'trash',
-    text: 'Trash',
+    text: isWindows ? 'Recycle Bin' : 'Trash',
   },
 ];
