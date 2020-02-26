@@ -1,6 +1,8 @@
-## quercus
+## Quercus
 
 Simple file manager using react and electron. Help is really needed to speed up the developement
+
+![screenshot](./screenshot.png)
 
 ## Run
 
