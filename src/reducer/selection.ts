@@ -4,7 +4,7 @@ import * as atypes from '../constants/actionTypes';
 import { Selection } from '../types/state';
 import { ToggleSelection } from '../types/actions';
 
-export default function(
+export default function (
   state: Selection = [],
   { type, payload }: ToggleSelection
 ) {
@@ -22,4 +22,4 @@ export default function(
 }
 
 export const isSelected = (state: Selection, name: string) =>
-  R.includes(name, state);
+  R.contains(name, state);
